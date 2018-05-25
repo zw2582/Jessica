@@ -7,6 +7,16 @@ class Controller
     
     
     public function init() {
+        if (strpos($_SERVER['HTTP_CONTENT_TYPE'], 'json')) {
+            $data = file_get_contents("php://input");
+            $data = json_decode($data, true);
+            
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                $_GET = $data;
+            } else {
+                $_POST = $data;
+            }
+        }
         $this->uid = $_SESSION['uid'] ? : $this->request('uid', 0);
     }
     

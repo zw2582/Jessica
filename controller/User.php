@@ -33,7 +33,6 @@ class User extends Controller
         if ($user) {
             return $this->ajaxFail("用户已存在");
         }
-        
         $id = db('user')->insert(['name'=>$name, 'password'=>$password, 'avatar'=>$avatar, 'type'=>$type]);
         if ($id > 0) {
             $_SESSION['uid'] = $id;
@@ -52,6 +51,7 @@ class User extends Controller
         $uid = $this->uid;
         $salary = $_POST['salary'];//薪资
         $summary = $_POST['summary'];//个人介绍
+        $avatar = $_POST['avatar'];
         
         if (!$uid) {
             return $this->ajaxFail('用户未登陆');
@@ -65,6 +65,7 @@ class User extends Controller
         if ($user['type'] == 2) {
             return $this->ajaxFail('genius save,but boss');
         } 
+        db('user')->where(['id'=>$uid])->update(['avatar'=>$avatar]);
         
         $genius = db('genius')->field('id')->where(['uid'=>$uid])->queryOne();
         if (!$genius) {
@@ -90,6 +91,7 @@ class User extends Controller
         $uid = $this->uid;
         $position = $_POST['position'];
         $claim = $_POST['claim'];
+        $avatar = $_POST['avatar'];
         
         if (!$uid) {
             return $this->ajaxFail('用户未登陆');
@@ -103,6 +105,7 @@ class User extends Controller
         if ($user['type'] == 1) {
             return $this->ajaxFail('boss save,but genius');
         }
+        db('user')->where(['id'=>$uid])->update(['avatar'=>$avatar]);
         
         $boss = db('boss')->field('id')->where(['uid'=>$uid])->queryOne();
         if (!$boss) {
@@ -144,6 +147,17 @@ class User extends Controller
         }
         $data = DbUtils::queryAll($sql);
         return $this->ajaxSucc($data);
+    }
+    
+    //用户信息
+    public function userinfo() {
+        $uid = $this->uid;
+        if (!$uid) {
+            return $this->ajaxFail('用户未登陆');
+        }
+        $user = db('user')->where(['id'=>$uid])->queryOne();
+        
+        return $this->ajaxSucc($user);
     }
 }
 
