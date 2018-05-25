@@ -1,0 +1,12 @@
+{
+    "name": "develop/test",
+    "require": {
+        "eaglewu/swoole-ide-helper": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "zhou wei",
+            "email": "zhouwei@huolicai.com"
+        }
+    ]
+}
