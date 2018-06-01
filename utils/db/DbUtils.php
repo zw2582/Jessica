@@ -36,7 +36,11 @@ class DbUtils
             }
         }
         if ($statement->execute()) {
-            $data = $statement->$fetType();
+            if ($fetType == 'fetch') {
+                $data = $statement->fetch(\PDO::FETCH_ASSOC);
+            } else {
+                $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            }
             return $data;
         } else {
             throw new \Exception("pdostatement error:{$statement->errorCode()}, errorinfo:{$statement->errorInfo()[2]}");

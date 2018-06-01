@@ -91,6 +91,8 @@ class User extends Controller
         $uid = $this->uid;
         $position = $_POST['position'];
         $claim = $_POST['claim'];
+        $company = $_POST['company'];
+        $salary = $_POST['salary'];
         $avatar = $_POST['avatar'];
         
         if (!$uid) {
@@ -112,12 +114,16 @@ class User extends Controller
             $result = db('boss')->insert([
                 'uid'=>$uid,
                 'position'=>$position,
-                'claim'=>$claim
+                'claim'=>$claim,
+                'company'=>$company,
+                'salary'=>$salary,
             ]);
         } else {
             $result = db('boss')->where(['uid'=>$uid])->update([
                 'position'=>$position,
-                'claim'=>$claim
+                'claim'=>$claim,
+                'company'=>$company,
+                'salary'=>$salary,
             ]);
         }
         if (!$result) {

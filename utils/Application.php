@@ -1,8 +1,6 @@
 <?php
 namespace utils;
 
-use controller\User;
-
 class Application
 {
     public function run() {
@@ -10,6 +8,8 @@ class Application
         set_exception_handler([$this, 'exceptionHandler']);
         register_shutdown_function([$this, 'fatlHandler']);
         
+        //设置session名称
+        session_name('job_id');
         //开启session
         session_start();
         
@@ -22,9 +22,9 @@ class Application
         if (empty($action)) {
             echo ("404");
         } else {
-            if ($controllerClass == 'user') {
-                $controller = new User();
-            }
+            $controllerClass = '\\controller\\'.ucfirst($controllerClass);
+            $controller = new $controllerClass();
+            
             if (!empty($controller)) {
                 $controller->init();
                 $result = $controller->{$action}();
@@ -33,7 +33,7 @@ class Application
         }
     }
     
-    public function exceptionHandler(\Exception $e) {
+    public function exceptionHandler($e) {
         echo "file:{$e->getFile()},code:{$e->getCode()},line:{$e->getLine()},{$e->getMessage()}", PHP_EOL;
         echo($e->getTraceAsString());
     }
