@@ -14,6 +14,20 @@ class QueryBuilder
     
     private $_insert = [];
     
+    private $_offset = null;
+    
+    private $_limit = null;
+    
+    public function offset($offset) {
+        $this->_offset = $offset;
+        return $this;
+    }
+    
+    public function limit($limit) {
+        $this->_limit = $limit;
+        return $this;
+    }
+    
     /**
      * @author zhouweiphp
      * @param array $data ['id'=>0]
@@ -93,6 +107,9 @@ class QueryBuilder
             list($whereStr, $whereData) = $this->resoleWhere();
             $sql .= $whereStr;
         }
+        if (isset($this->_offset) && $this->_limit) {
+            $sql .= "limit {$this->_offset},{$this->_limit} ";
+        }
         
         return DbUtils::$type($sql, $whereData);
     }
@@ -103,6 +120,12 @@ class QueryBuilder
     
     public function queryAll() {
         return $this->query("queryAll");
+    }
+    
+    public function count($field='*') {
+        $this->_field = "count({$field}) as count";
+        $data = $this->query();
+        return $data['count'];
     }
     
     private function resoleWhere() {
