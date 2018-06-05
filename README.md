@@ -6,3 +6,5 @@
 其原来的前端react代码在github的job上面，后来打算发展成一个非常轻量的通用小框架
 
 controller中的所有代码都是demo代码，无特殊意义
+
+呵呵
