@@ -53,12 +53,26 @@ class QueryBuilder
         return $this;
     }
     
-    public function update($data) {
+    /**
+     * return affected rows
+     * @author zhouweiphp
+     * @param array $data
+     * @return string
+     * 2018年6月7日 下午3:05:21
+     */
+    public function update($data):int {
         $this->_update= array_merge($this->_update, $data);
         return $this->execute();
     }
     
-    public function insert($data) {
+    /**
+     * return last insert id
+     * @author zhouweiphp
+     * @param array $data
+     * @return string
+     * 2018年6月7日 下午3:05:11
+     */
+    public function insert($data):int {
         $this->_insert= array_merge($this->_insert, $data);
         return $this->execute();
     }
