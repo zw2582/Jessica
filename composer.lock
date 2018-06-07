@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "709bfa8ca0385336c36a840b30b31e22",
+    "content-hash": "559a130bbe80a31e110c4099088645e0",
     "packages": [
         {
             "name": "eaglewu/swoole-ide-helper",
@@ -30,6 +30,45 @@
             ],
             "description": "Swoole 在IDE下自动识别类、函数、宏，自动补全函数名",
             "time": "2018-05-16T13:12:21+00:00"
+        },
+        {
+            "name": "rakit/validation",
+            "version": "v0.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rakit/validation.git",
+                "reference": "40837c49180d2e8e36c2ed9188e34d994474e55c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/rakit/validation/40837c49180d2e8e36c2ed9188e34d994474e55c.zip",
+                "reference": "40837c49180d2e8e36c2ed9188e34d994474e55c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rakit\\Validation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammad Syifa",
+                    "email": "emsifa@gmail.com"
+                }
+            ],
+            "description": "PHP Laravel like standalone validation library",
+            "time": "2018-01-25T12:41:55+00:00"
         }
     ],
     "packages-dev": [],

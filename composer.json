@@ -1,7 +1,8 @@
 {
     "name": "develop/test",
     "require": {
-        "eaglewu/swoole-ide-helper": "dev-master"
+        "eaglewu/swoole-ide-helper": "dev-master",
+        "rakit/validation": "^0.14.0"
     },
     "authors": [
         {

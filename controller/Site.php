@@ -1,15 +1,25 @@
 <?php
 namespace controller;
 
+
+use Rakit\Validation\Validator;
+
 class Site extends Controller
 {
     public function index() {
-        $a = 1;
-        $b = &$a;
-        $b = 2;
+        $validator = new Validator();
+        $validation = $validator->validate($_GET, [
+            'id'=>'required|numeric',
+            'msg'=>'defaults:23'
+        ]);
         
-        var_dump($a, $b);
-        return $this->ajaxFail('sdfsdf');
+        if ($validation->fails()) {
+            $errors = $validation->errors();
+            print_r($errors->firstOfAll());
+            print_r($validation->getValidata());
+        } else {
+            print_r($validation->getValidata());
+        }
     }
     
     public function list() {
