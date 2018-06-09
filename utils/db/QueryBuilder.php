@@ -128,6 +128,10 @@ class QueryBuilder
         return DbUtils::$type($sql, $whereData);
     }
     
+    public function querySql($sql, $data) {
+        return DbUtils::$type($sql, $data);
+    }
+    
     public function queryOne() {
         return $this->query();
     }
