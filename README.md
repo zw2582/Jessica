@@ -1,4 +1,4 @@
-# jobweb
+# 杰西卡 Jessica
 
 #### 项目介绍
 自己写的一个快速开发框架
@@ -24,7 +24,7 @@ class Site extends Controller {
 
 ```
 
-> 数据库操作
+> 数据库配置
 
 数据库操作也很简单，基于pdo操作mysql，别的数据库都不支持
 
