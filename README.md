@@ -3,6 +3,12 @@
 #### 项目介绍
 自己写的一个快速开发框架
 
+#### 安装
+
+```
+composer create-project zw2582/jessica
+```
+
 #### 开发实例
 
 > controller:控制器层
