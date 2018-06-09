@@ -1,13 +1,12 @@
 {
-    "name": "develop/test",
-    "require": {
-        "eaglewu/swoole-ide-helper": "dev-master",
-        "rakit/validation": "^0.14.0"
-    },
-    "authors": [
-        {
-            "name": "zhou wei",
-            "email": "zhouwei@huolicai.com"
-        }
-    ]
+	"name" : "develop/test",
+	"require" : {
+		"eaglewu/swoole-ide-helper" : "dev-master",
+		"rakit/validation" : "0.16.0"
+	},
+	"authors" : [{
+			"name" : "zhou wei",
+			"email" : "2582308253@qq.com"
+		}
+	]
 }

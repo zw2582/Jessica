@@ -8,18 +8,20 @@ class Site extends Controller
 {
     public function index() {
         $validator = new Validator();
-        $validation = $validator->validate($_GET, [
+        $validation = $validator->validate($_POST, [
             'id'=>'required|numeric',
-            'msg'=>'defaults:23'
+            'msg'=>'required|defaults:23'
         ]);
         
         if ($validation->fails()) {
             $errors = $validation->errors();
             print_r($errors->firstOfAll());
-            print_r($validation->getValidata());
         } else {
-            print_r($validation->getValidata());
+            print_r('success');
         }
+        print_r($validation->getValidatedData());
+        print_r($validation->getValidData());
+        print_r($validation->getInvalidData());
     }
     
     public function list() {
