@@ -1,12 +1,20 @@
 {
-	"name" : "develop/test",
+	"name" : "zw2582/Jessica",
+	"description" : "This is a very lightweight php framework for rapid development",
+	"type" : "project",
+	"keywords" : [
+		"php lightweight framework"
+	],
+	"license" : "MIT",
 	"require" : {
 		"eaglewu/swoole-ide-helper" : "dev-master",
-		"rakit/validation" : "0.16.0"
+		"rakit/validation" : "0.16.0",
+		"php" : ">=5.5.0"
 	},
 	"authors" : [{
 			"name" : "zhou wei",
-			"email" : "2582308253@qq.com"
+			"email" : "2582308253@qq.com",
+			"role" : "Developer"
 		}
 	]
 }
