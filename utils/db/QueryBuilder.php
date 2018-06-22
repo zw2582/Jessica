@@ -77,6 +77,21 @@ class QueryBuilder
         return $this->execute();
     }
     
+    /**
+     * delete
+     * @author zhouweiphp
+     * @return int
+     * 2018年6月21日 下午3:25:07
+     */
+    public function delete():int {
+        $sql = "delete from {$this->_table} ";
+        
+        list($whereStr, $whereData) = $this->resoleWhere();
+        $sql .= $whereStr;
+        
+        return DbUtils::update($sql, $whereData);
+    }
+    
     private function execute() {
         if (!empty($this->_insert)) {
             $insertKeys = array_keys($this->_insert);

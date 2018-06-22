@@ -17,9 +17,10 @@ foreach ($message as $va) {
     echo $messageBase64,PHP_EOL;
 } */
 
-echo 'cac1';
-$data = exec('php ./wai.php', $result);
-echo 'ca2';
-
-echo 'data:'.$data,PHP_EOL;
-echo var_dump($result);
+if (true) {
+    if (false) {
+        echo 'ca1';
+    }
+} else {
+    echo 'ca2';
+}
