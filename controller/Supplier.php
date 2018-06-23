@@ -77,7 +77,7 @@ class Supplier extends Controller
     }
     
     public function del() {
-        $suppId = $this->request('supp_id');
+        $suppId = $this->request('id');
         
         $rows = db('supplier')->where(['id'=>$suppId])->delete();
         

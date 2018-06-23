@@ -72,7 +72,7 @@ class QueryBuilder
      * @return string
      * 2018年6月7日 下午3:05:11
      */
-    public function insert($data):int {
+    public function insert($data) {
         $this->_insert= array_merge($this->_insert, $data);
         return $this->execute();
     }
@@ -168,27 +168,28 @@ class QueryBuilder
             foreach ($this->_where as $key=>$val) {
                 if (is_array($val)) {
                     if (in_array($val[0], ['=','<>', '<', '>', '<=', '>=', 'like'])) {
-                        $whereStr .= "$key {$val[0]} ? ";
+                        $whereStr .= "and $key {$val[0]} ? ";
                         $whereData[] = $val[1];
-                    } elseif ($val[0] == 'in') {
+                    } elseif (in_array($val[0], ['in', 'not in'])) {
                         if (!is_array($val[1])) {
                             throw new \Exception('in的params必须是数组');
                         }
                         $inzhan = trim(str_pad("", count($val[1])*2, ',?'), ',');
-                        $whereStr .= "$key in ($inzhan) ";
+                        $whereStr .= "and $key {$val[0]} ($inzhan) ";
                         $whereData = array_merge($whereData, $val[1]);
                     } else {
                         $inzhan = trim(str_pad("", count($val)*2, ',?'), ',');
-                        $whereStr .= "$key in ($inzhan) ";
+                        $whereStr .= "and $key in ($inzhan) ";
                         $whereData = array_merge($whereData, $val);
                     }
                 } else {
-                    $whereStr .= "$key=? ";
+                    $whereStr .= "and $key=? ";
                     $whereData[] = $val;
                 }
             }
         }
         if ($whereStr) {
+            $whereStr = trim($whereStr, 'and');
             $whereStr = ' where '.$whereStr;
         }
         return [$whereStr, $whereData];

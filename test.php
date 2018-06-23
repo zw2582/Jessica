@@ -24,3 +24,7 @@ if (true) {
 } else {
     echo 'ca2';
 }
+
+$a = '23.23';
+
+var_dump(is_float($a));die;

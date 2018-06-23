@@ -13,7 +13,7 @@ class Catalog extends Controller
         $size = $this->request('size', 10);
         
         //search database
-        $catalogs = db('catalog')->offset(($page-1)*$size)->limit($size)->queryAll();
+        $catalogs = db('catalog')->queryAll();
         //search total
         $total = db('catalog')->count();
         

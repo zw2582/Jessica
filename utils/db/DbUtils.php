@@ -32,7 +32,11 @@ class DbUtils
                 if (is_numeric($k)) {
                     $k++;
                 }
-                $statement->bindValue($k, $v);
+                if (is_numeric($v) && intval($v) == $v) {
+                    $statement->bindParam($k, intval($v), \PDO::PARAM_INT);
+                } else {
+                    $statement->bindParam($k, $v, \PDO::PARAM_STR);
+                }
             }
         }
         if ($statement->execute()) {
@@ -77,6 +81,27 @@ class DbUtils
     
     public static function update($sql, $params) {
         return self::save($sql, $params, 'update');
+    }
+    
+    public static function startTrans() {
+        $conn = self::getConn();
+        if (!$conn->beginTransaction()) {
+            throw new \Exception('开启事务失败');
+        }
+    }
+    
+    public static function commit() {
+        $conn = self::getConn();
+        if (!$conn->commit()) {
+            throw new \Exception('提交事务失败');
+        }
+    }
+    
+    public static function rollBack() {
+        $conn = self::getConn();
+        if (!$conn->rollBack()) {
+            throw new \Exception('回滚事务失败');
+        }
     }
 }
 
